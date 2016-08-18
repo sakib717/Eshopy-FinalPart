@@ -1,0 +1,40 @@
+﻿@using Eshopy.Models
+@model EshopyTypeModels
+@{
+    ViewBag.Title = "Browse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="padded">
+    <div class="panel-body my-div">
+        <div class="form-group"><a class="btn btn-default btn-lg" href="@Url.Action("Index")">Back</a></div>
+        <h2>Store Item: @Model.Name</h2>
+        @*<ul>
+               
+            </ul>*@
+        <table class="table table-condensed">
+            <tr>
+                <th> Image </th>
+                <th> Name  </th>
+                <th> Description </th>
+                <th> Price </th>
+            </tr>
+            @foreach (EshopyItemModels item in Model.EshopyItems)
+            {
+                <tr style="cursor:pointer" onclick="location.href = '@Url.Action("Details", new { id= item.EshopyItemModelsId})'">
+
+                    <td><img style="width:50px;height:50px;" src="@item.imgLink" alt="@item.Name" /></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@using Eshopy.Models
+@model IEnumerable<EshopyTypeModels>
+
+@{
+    ViewBag.Title = "Store";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="padded">
+    <div class="panel-body my-div">
+        <h2>Browse Food Types:</h2>
+        <p>
+            Select from @Model.Count() different Types:
+        </p>
+        @*<ul>
+             
+            </ul>*@
+
+        @foreach (EshopyTypeModels item in Model)
+        {
+            <div class="col-md-4 col-sm-6" onclick="location.href = '@Url.Action("Browse", new { EshopyType = item.Name})'">
+                <div class="menu-item">
+                    <h2>@Html.DisplayFor(model => item.Name)</h2>
+                    <img class="menu-item-image"/>
+                    <p class="form-group">
+                        @item.Description
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
